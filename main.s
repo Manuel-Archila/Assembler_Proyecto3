@@ -45,14 +45,28 @@ main:
 	b	done
 
 programa:
-
-    contador .req r6
-
+    ldr r5, =switchPort
+    
     bl init
+    bl reset
 
-    bl norm
+    loopInicio:
+        ldr r0,[r5]
+        bl digitalRead
+        mov r7,r0
 
-    bl reversa
+        cmp r7,#1
+        bne secuencia
 
-done:
-    pop {pc}
+        b loopInicio
+
+    secuencia:
+        mov r0, #500
+	    bl	delay
+
+        bl norm
+
+        bl reversa
+
+    done:
+        pop {pc}

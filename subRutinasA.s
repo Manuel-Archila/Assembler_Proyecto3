@@ -137,7 +137,7 @@ loopMostrar:
 
 	//Verificar el valor del switch
 	cmp r7,#1
-	beq final
+	bne final
 
 	//Cargar delay
 	ldr r0,=delayMs
@@ -161,7 +161,7 @@ loopMostrar:
 
         //Verificar el valor del switch
         cmp r7,#1
-        beq final
+        bne final
 
         //Cargar delay
         ldr r0,=delayMs
@@ -184,7 +184,7 @@ loopMostrar:
 
         //Verificar el valor del switch
         cmp r7,#1
-        beq final
+        bne final
 
         //Cargar delay
         ldr r0,=delayMs
@@ -208,7 +208,7 @@ loopMostrar:
 
         //Verificar el valor del switch
         cmp r7,#1
-        beq final
+        bne final
 
         //Cargar delay
         ldr r0,=delayMs
@@ -232,7 +232,7 @@ loopMostrar:
 
         //Verificar el valor del switch
         cmp r7,#1
-        beq final
+        bne final
 
         //Cargar delay
         ldr r0,=delayMs
@@ -255,7 +255,7 @@ loopMostrar:
 
         //Verificar el valor del switch
         cmp r7,#1
-        beq final
+        bne final
 
         //Cargar delay
         ldr r0,=delayMs
@@ -271,6 +271,12 @@ loopMostrar:
 	b loopMostrar
 
 final:
+	.unreq SWITCH
+
+    bl reset
+    mov r0, #500
+	bl	delay
+	
 	pop {pc}
 
 
