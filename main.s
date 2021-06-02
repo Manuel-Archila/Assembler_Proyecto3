@@ -50,7 +50,7 @@ programa:
 
     bl init
 
-    //Agregar la subrutina de ida @archi
+    bl norm
 
     bl reversa
 
