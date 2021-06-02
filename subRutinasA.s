@@ -1,7 +1,14 @@
-//Daniel Gonzalez 20293
-//Manuel Archila 161250
-//Universidad del Valle de Guatemala
-//Subrutinas de flujo normal del programa
+/*
+ * Autores: Daniel Gonzalez 20293, Alejandro Archila 161250
+ * Modificacion: 01/06/2021
+ * Archivo: subRutinasA.s
+ * Curso: CC3054 Organizacion de computadoras y assembler.
+ * Descripcion: El archivo contiene diferentes subrutinas. Tiene subrutinas que encienden LEDs del 7 segmentos
+ *              para mostrar las letras necesarias del porgrama (D, E, F); tiene la subrutina que muestra la 
+ *              secuencia de letras en orden.
+ */
+
+
 .text
 .align 2
 
@@ -24,7 +31,7 @@ funcD:
 
 	//Activando el segmento d en el display
 	ldr r0,=pind
-	ldr r0.[r0]
+	ldr r0,[r0]
 	mov r1,#0
 	bl digitalWrite
 
@@ -139,7 +146,7 @@ loopMostrar:
 	//Apagar todas las luces del dispaly
 	bl reset
 
-	mov re0,#250
+	mov r0,#250
 	bl delay
 
 	//--------------Letra B---------------

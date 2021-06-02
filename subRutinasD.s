@@ -2,11 +2,12 @@
  * Autores: Daniel Gonzalez 20293, Alejandro Archila 161250
  * Modificacion: 01/06/2021
  * Archivo: subRutinasD.s
- * Curso: Organizacion de computadoras y assembler.
+ * Curso: CC3054 Organizacion de computadoras y assembler.
  * Descripcion: El archivo contiene diferentes subrutinas. Tiene una subrutina que
  *              inicializa todos los pines del GPIO para poder escribir o leer de ellos;
  *              tiene subrutinas que encienden LEDs del 7 segmentos para mostrar las letras
- *              necesarias del porgrama; tiene la subrutina que muestra la secuencia de letras.
+ *              necesarias del porgrama; tiene la subrutina que muestra la secuencia de letras
+ *              en reversa.
  */
 
 
@@ -22,7 +23,7 @@ reversa:
     ldr SWITCH, =switchPort
 
     loopLetras:
-        /*
+        
         //------------Letra F------------
         bl funcF
 
@@ -31,7 +32,7 @@ reversa:
         mov r7,r0
 
         cmp r7,#1
-        beq fin
+        bne fin
 
         ldr	r0, =delayMs
 	    ldr	r0, [r0]
@@ -52,7 +53,7 @@ reversa:
         mov r7,r0
 
         cmp r7,#1
-        beq fin
+        bne fin
 
         ldr	r0, =delayMs
 	    ldr	r0, [r0]
@@ -73,7 +74,7 @@ reversa:
         mov r7,r0
 
         cmp r7,#1
-        beq fin
+        bne fin
 
         ldr	r0, =delayMs
 	    ldr	r0, [r0]
@@ -82,7 +83,7 @@ reversa:
         bl reset
 
         mov r0, #250
-	    bl	delay*/
+	    bl	delay
 
 
         //------------Letra C------------
@@ -94,7 +95,7 @@ reversa:
         mov r7,r0
 
         cmp r7,#1
-        beq fin
+        bne fin
 
         ldr	r0, =delayMs
 	    ldr	r0, [r0]
@@ -115,7 +116,7 @@ reversa:
         mov r7,r0
 
         cmp r7,#1
-        beq fin
+        bne fin
 
         ldr	r0, =delayMs
 	    ldr	r0, [r0]
@@ -136,7 +137,7 @@ reversa:
         mov r7,r0
 
         cmp r7,#1
-        beq fin
+        bne fin
 
         ldr	r0, =delayMs
 	    ldr	r0, [r0]
@@ -150,6 +151,12 @@ reversa:
         b loopLetras
 
     fin:
+    .unreq SWITCH
+
+    bl reset
+    mov r0, #500
+	bl	delay
+
     pop {pc}
 
 
@@ -182,6 +189,11 @@ funcA:
 	bl 	digitalWrite
 
     ldr	r0, =pinf				// carga dirección de pin
+	ldr	r0, [r0]				// operaciones anteriores borraron valor de pin en r0
+	mov	r1, #0
+	bl 	digitalWrite
+
+    ldr	r0, =ping				// carga dirección de pin
 	ldr	r0, [r0]				// operaciones anteriores borraron valor de pin en r0
 	mov	r1, #0
 	bl 	digitalWrite

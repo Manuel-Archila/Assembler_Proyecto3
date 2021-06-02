@@ -1,3 +1,12 @@
+/*
+ * Autores: Daniel Gonzalez 20293, Alejandro Archila 161250
+ * Modificacion: 01/06/2021
+ * Archivo: main.s
+ * Curso: CC3054 Organizacion de computadoras y assembler.
+ * Descripcion: Programa principal que permite el uso de las subrutinas para mostrar
+ *              preparar los pines del GPIO, mostrar las letras en orden, en reversa y
+ *              terminar el programa.
+ */
 
 .data
 .align 2
@@ -30,13 +39,20 @@ main:
     bl 	wiringPiSetupGpio	// Inicializar usando pines del conector
 	mov	r1,#-1					// -1 representa un código de error
 	cmp	r0, r1					// verifica si se retornó cod error en r0
-	bne	init					// NO error, entonces iniciar programa
+	bne	programa					// NO error, entonces iniciar programa
 	ldr	r0, =ErrMsg				// SI error,
 	bl	printf					// imprimir mensaje y
 	b	done
 
+programa:
+
+    contador .req r6
+
     bl init
 
+    //Agregar la subrutina de ida @archi
 
+    bl reversa
 
+done:
     pop {pc}
