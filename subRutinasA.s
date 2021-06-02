@@ -129,6 +129,7 @@ norm:
 loopMostrar:
 	//--------------Letra A---------------
 	bl funcA
+
 	//Verificar el valor 
 	ldr r0,[SWITCH]
 	bl digitalRead
@@ -149,5 +150,127 @@ loopMostrar:
 	mov r0,#250
 	bl delay
 
-	//--------------Letra B---------------
-	bl funcA
+	//--------------Letra B---------
+	bl funcB
+
+        //Verificar el valor
+ 
+        ldr r0,[SWITCH]
+        bl digitalRead
+        mov r7,r0
+
+        //Verificar el valor del switch
+        cmp r7,#1
+        beq fin
+
+        //Cargar delay
+        ldr r0,=delayMs
+        ldr r0,[r0]
+        bl delay
+
+        //Apagar todas las luces del dispaly
+        bl reset
+
+        mov r0,#250
+        bl delay
+
+        //--------------Letra C---------
+        bl funcC
+
+        //Verificar el valor 
+        ldr r0,[SWITCH]
+        bl digitalRead
+        mov r7,r0
+
+        //Verificar el valor del switch
+        cmp r7,#1
+        beq fin
+
+        //Cargar delay
+        ldr r0,=delayMs
+        ldr r0,[r0]
+        bl delay
+
+        //Apagar todas las luces del dispaly
+        bl reset
+
+        mov r0,#250
+        bl delay
+
+        //--------------Letra D---------
+        bl funcD
+
+        //Verificar el valor
+ 
+        ldr r0,[SWITCH]
+        bl digitalRead
+        mov r7,r0
+
+        //Verificar el valor del switch
+        cmp r7,#1
+        beq fin
+
+        //Cargar delay
+        ldr r0,=delayMs
+        ldr r0,[r0]
+        bl delay
+
+        //Apagar todas las luces del dispaly
+        bl reset
+
+        mov r0,#250
+        bl delay
+
+        //--------------Letra E---------
+        bl funcE
+
+        //Verificar el valor
+ 
+        ldr r0,[SWITCH]
+        bl digitalRead
+        mov r7,r0
+
+        //Verificar el valor del switch
+        cmp r7,#1
+        beq fin
+
+        //Cargar delay
+        ldr r0,=delayMs
+        ldr r0,[r0]
+        bl delay
+
+        //Apagar todas las luces del dispaly
+        bl reset
+
+        mov r0,#250
+        bl delay
+
+        //--------------Letra F---------
+        bl funcF
+
+        //Verificar el valor
+        ldr r0,[SWITCH]
+        bl digitalRead
+        mov r7,r0
+
+        //Verificar el valor del switch
+        cmp r7,#1
+        beq fin
+
+        //Cargar delay
+        ldr r0,=delayMs
+        ldr r0,[r0]
+        bl delay
+
+        //Apagar todas las luces del dispaly
+        bl reset
+
+        mov r0,#250
+        bl delay
+
+	b loopMostrar
+
+fin:
+	pop{pc}
+
+
